@@ -2,23 +2,28 @@
 {% block content %}
 		<div class="row align-items-center">
             <div class="col-md-3">
-                <img class="img-fluid img-thumbnail" src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png"/>
+                <img class="img-fluid img-thumbnail" src="{{ img }}"/>
             </div>
 			<div class="col-md-3 fluid-center">
-				<form action="#" method="post"> 
+				<form action="submit.php" method="post"> 
 					<div class="form-group">
 						<label for="date">Día</label>
 						<input class="form-control" type="date" id="date" name="date" value="{{ "now"|date("Y-m-d") }}"></input>
 					</div>
 					<div class="form-group">
-						<label for="km">Kilometros</label>
-						<input class="form-control" type="number" id="km" name="km" placeholder="0"></input>
-                         <div class="input-group-append">
-                            <span>Km</span>
-                        </div>
+						<div class="input-group">
+							<input class="form-control" type="number" id="km" name="km" value="0" placeholder="0"></input>
+							<div class="input-group-append">
+								<span class="input-group-text">Km</span>
+							</div>
+						</div>
 					</div>
+					<input type="hidden" name="id" value="{{id}}"></input>
 					<div class="form-group">
-					<input type="submit" class="btn btn-outline-primary float-right" name="formachou" value="Login" />
+					<a class="btn btn-primary float-left" href="#">
+						<i class="fas fa-chart-area"></i>&nbsp;Estatistiques
+					</a>
+					<input type="submit" class="btn btn-success float-right" name="formacho" value='+ Afegir' />
 					</div>
 				</form>
 			</div>
