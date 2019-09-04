@@ -20,7 +20,7 @@
 					</div>
 					<input type="hidden" name="id" value="{{id}}"></input>
 					<div class="form-group">
-					<a class="btn btn-primary float-left" href="#">
+					<a class="btn btn-primary float-left" href="stats.php">
 						<i class="fas fa-chart-area"></i>&nbsp;Estatistiques
 					</a>
 					<input type="submit" class="btn btn-success float-right" name="formacho" value='+ Afegir' />
