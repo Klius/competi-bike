@@ -15,6 +15,7 @@ render();
 	global $id;//aida
 	$total = getTotalKms($id);
 	$stats = getStats($id);
+	var_dump($stats);
 	echo $twig->render('stats.tpl',["total"=>$total,"id"=>$id,"stats"=>$stats]);
  }
  function getTotalKms($id){
@@ -24,18 +25,18 @@ render();
 }
 function getStats($id){
 	global $con;
-	$res = $con->query("SELECT SUM(km),fecha FROM stats where id=".$id." GROUP BY fecha");
-	$stats = formatStats($res->fetch_array(MYSQLI_ASSOC));
-	return json_encode($stats);
+	$res = $con->query("SELECT SUM(km) as km,fecha FROM stats where id=".$id." GROUP BY fecha");
+	$stats = formatStats($res);
+	return json_encode($stats, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
 }
 function formatStats($data){
 	$rrd['cols'] = array(
 		array('label' => 'Fecha', 'type' => 'string'),
-		array('label' => 'Kilometros', 'type' => 'number')
+		array('label' => 'Km', 'type' => 'number')
 	);
 	
 	$rows = array();
-	foreach($data as $r) {
+	while($r = $data->fetch_array(MYSQLI_ASSOC)) {
 		$temp = array();
 		$temp[] = array('v' => $r['fecha']); 
 		$temp[] = array('v' => (float) $r['km']);
